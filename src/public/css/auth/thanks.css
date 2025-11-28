@@ -1,0 +1,36 @@
+.all__wrapper {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-thanks__wrapper {
+    width: 580px;
+    height: 380px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 4px 4px 10px #656565;
+    text-align: center;
+}
+
+.register-thanks__message{
+    margin-top: 130px;
+    margin-bottom: 50px;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.register-thanks__link-shop-list {
+    padding: 6px 22px;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    background-color: #33f;
+    box-shadow: 0 2px 6px #656565;
+    font-size: 18px;
+    text-decoration: none;
+}

@@ -1,0 +1,161 @@
+.all__wrapper {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+}
+
+.shop-info{
+    width: 44%;
+    margin-top: 150px;
+}
+
+.shop-info__name-area{
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.shop-info__button-back{
+    width: 40px;
+    height: 40px;
+    margin-right: 16px;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px #656565;
+    font-size: 24px;
+    font-weight: bolder;
+    text-align: center;
+    text-decoration: none;
+}
+
+.shop-info__button-back:active{
+    color: inherit;
+}
+
+.shop-info__name{
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.shop-info__image{
+    width: 88%;
+    aspect-ratio: 1.6;
+}
+
+.shop-info__tags{
+    margin: 24px 0;
+    font-size: 20px;
+}
+
+.shop-info__region{
+    margin-right: 12px;
+}
+
+.shop-info__description{
+    width: 88%;
+    font-size: 20px;
+}
+
+.shop-reservation{
+    width: 43%;
+}
+
+.reservation-form{
+    margin-top: 40px;
+    color: #fff;
+    background-color: #06f;
+    border-radius: 8px;
+    box-shadow: 0 8px 8px #656565;
+}
+
+.reservation-form__heading{
+    padding: 28px 0;
+    margin: 0;
+    padding-left: 40px;
+}
+
+.reservation-form__input-date{
+    width: 240px;
+    height: 40px;
+    padding: 0 18px;
+    margin: 0 5%;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    letter-spacing: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+.reservation-form__input-time,
+.reservation-form__select-people{
+    width: 90%;
+    height: 40px;
+    padding: 0 18px;
+    margin: 0 5%;
+    margin-top: 44px;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    letter-spacing: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+.reservation-confirm-table{
+    width: 90%;
+    margin: 0 5%;
+    margin-top: 48px;
+    background-color: #57f;
+    border-radius: 8px;
+    text-align: left;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.reservation-confirm-table__label{
+    width: 140px;
+    padding: 4px 0;
+    padding-left: 30px;
+}
+
+.reservation-confirm-table__item{
+    padding: 4px 0;
+    padding-left: 26px;
+}
+
+.reservation-confirm-table__label-first,
+.reservation-confirm-table__item-first{
+    padding-top: 24px;
+}
+
+.reservation-confirm-table__label-last,
+.reservation-confirm-table__item-last{
+    padding-bottom: 24px;
+}
+
+.reservation-form__button-submit{
+    width: 100%;
+    height: 70px;
+    margin-top: 240px;
+    color: #fff;
+    background-color: #33f;
+    border: none;
+    border-radius: 0 0 8px 8px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.reservation-form__error-message{
+    margin: 0;
+    color: #ffff00;
+    font-size: 18px;
+    font-weight: 500;
+    position: absolute;
+    left: 53%;
+}
