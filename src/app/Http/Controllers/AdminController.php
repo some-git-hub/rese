@@ -25,7 +25,7 @@ class AdminController extends Controller
             'role' => 1,
         ]);
 
-        return redirect()->route('admin.owner.create')->with('success', '店舗代表者を作成しました。');
+        return redirect()->route('admin.owner.create')->with('success', '店舗代表者を作成しました');
     }
 
     public function index()
@@ -34,4 +34,12 @@ class AdminController extends Controller
 
         return view('admin.owner-list', compact('owners'));
     }
+
+    public function destroy(User $owner)
+    {
+        $owner->delete();
+
+        return redirect()->route('admin.owner.list')->with('success', '店舗代表者を削除しました');
+    }
+
 }

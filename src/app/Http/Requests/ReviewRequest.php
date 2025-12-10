@@ -28,4 +28,19 @@ class ReviewRequest extends FormRequest
             'comment' => 'nullable|string|max:255',
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'rating' => '評価',
+            'comment' => 'コメント'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'rating.required' => ':attributeを選択してください'
+        ];
+    }
 }

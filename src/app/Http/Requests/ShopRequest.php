@@ -23,13 +23,20 @@ class ShopRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name' => 'required|max:50',
             'region' => 'nullable|max:50',
             'genre' => 'nullable|max:50',
             'description' => 'required|max:255',
-            'image' => 'required|image|max:10240',
         ];
+
+        if ($this->isMethod('post')) { // 新規登録
+            $rules['image'] = 'required|image|mimes:jpg,jpeg,png|max:10240';
+        } else { // 更新
+            $rules['image'] = 'nullable|image|mimes:jpg,jpeg,png|max:10240';
+        }
+
+        return $rules;
     }
 
     public function attributes()

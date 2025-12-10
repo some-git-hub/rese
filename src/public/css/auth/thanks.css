@@ -34,3 +34,30 @@
     font-size: 18px;
     text-decoration: none;
 }
+
+
+
+
+@media screen and (max-width: 768px) {
+
+    .register-thanks__wrapper {
+        width: 76%;
+        height: 380px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 4px 4px 10px #656565;
+        text-align: center;
+    }
+
+    .register-thanks__message {
+        margin-top: 112px;
+        margin-bottom: 50px;
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    .register-thanks__message-1{
+        display: block;
+    }
+
+}

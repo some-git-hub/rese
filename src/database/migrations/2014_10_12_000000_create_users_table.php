@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('role')->default(0); // 0:ユーザー, 1:店舗代表者, 2:管理者
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

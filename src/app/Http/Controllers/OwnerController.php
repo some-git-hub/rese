@@ -54,7 +54,7 @@ class OwnerController extends Controller
 
         $shop->save();
 
-        return redirect()->route('owner.shop.info')->with('success', '店舗情報を登録しました。');
+        return redirect()->route('owner.shop.edit', $shop->id)->with('success', '店舗情報を登録しました');
     }
 
     public function update(ShopRequest $request, Shop $shop)
@@ -78,16 +78,35 @@ class OwnerController extends Controller
 
         $shop->save();
 
-        return redirect()->route('owner.shop.info')->with('success', '店舗情報を更新しました。');
+        return redirect()->route('owner.shop.edit', $shop->id)->with('success', '店舗情報を更新しました');
     }
 
     public function index()
     {
         $shop = auth()->user()->shop;
         $reservations = $shop
-            ? Reservation::where('shop_id', $shop->id)->where('status', 0)->get()
+            ? Reservation::where('shop_id', $shop->id)
+                ->where('status', 0)
+                ->orderBy('date', 'asc')
+                ->orderBy('time', 'asc')
+                ->get()
             : collect();
 
         return view('owner.reservation-list', compact('shop', 'reservations'));
     }
+
+    public function complete($reservation)
+{
+    $reservation = Reservation::findOrFail($reservation);
+
+    if ($reservation->shop->user_id !== auth()->id()) {
+        abort(403, '権限がありません。');
+    }
+
+    $reservation->status = 1;  // 利用完了
+    $reservation->save();
+
+    return response()->json(['success' => true]);
+}
+
 }

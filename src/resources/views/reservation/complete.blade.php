@@ -8,7 +8,8 @@
 <div class="all__wrapper">
     <div class="reservation-complete__wrapper">
         <p class="reservation-complete__message">
-            ご予約ありがとうございます
+            <span class="reservation-complete__message-1">ご予約</span>
+            <span class="reservation-complete__message-2">ありがとうございます</span>
         </p>
 
         <div class="reservation-complete__link-area">

@@ -41,14 +41,19 @@ class ReservationController extends Controller
         }
 
         $reservation->status = 2;
+        $reservation->canceled_at = now();
         $reservation->save();
 
         return response()->json(['success' => true]);
     }
 
-    public function update(ReservationRequest $request, $id)
+public function update(ReservationRequest $request, $id)
 {
     $reservation = Reservation::findOrFail($id);
+
+    if ($reservation->user_id !== auth()->id()) {
+        abort(403, '権限がありません。');
+    }
 
     $data = $request->validated();
 
@@ -58,8 +63,9 @@ class ReservationController extends Controller
         'people' => $data['people'],
     ]);
 
-    return response()->json(['message' => 'updated'], 200);
+    return response()->json(['success' => true]);
 }
+
 
     public function storeReview(ReviewRequest $request, Reservation $reservation)
     {
@@ -69,7 +75,7 @@ class ReservationController extends Controller
         $reservation->comment = $data['comment'] ?? '';
         $reservation->save();
 
-        return response()->json(['message' => 'レビューを保存しました']);
+        return redirect()->back()->with('success', 'レビューありがとうございました！');
     }
 
     public function skip($reservationId)
@@ -80,12 +86,11 @@ class ReservationController extends Controller
         abort(403);
     }
 
-    // rating=0 だと未評価扱いなので、評価しない＝-1 にする
     $reservation->rating = -1;
     $reservation->comment = null;
     $reservation->save();
 
-    return redirect()->back()->with('message', '評価をスキップしました');
+    return redirect()->back();
 }
 
 }

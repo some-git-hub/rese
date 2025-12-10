@@ -13,28 +13,24 @@ class ShopController extends Controller
      */
 public function index(Request $request)
 {
-    $query = Shop::query();
+    $query = Shop::whereHas('user', function ($q) {
+        $q->whereNull('deleted_at');
+    });
 
-    // エリアで絞り込み（部分一致でもOK）
     if ($request->region) {
-        $query->where('region', $request->region); // 完全一致
-        // 部分一致なら → $query->where('region', 'like', '%'.$request->region.'%');
+        $query->where('region', $request->region);
     }
 
-    // ジャンルで絞り込み
     if ($request->genre) {
         $query->where('genre', $request->genre);
-        // 部分一致なら → $query->where('genre', 'like', '%'.$request->genre.'%');
     }
 
-    // 店名で絞り込み（部分一致）
     if ($request->keyword) {
         $query->where('name', 'like', '%'.$request->keyword.'%');
     }
 
     $shops = $query->get();
 
-    // region と genre の一覧は DB からユニーク値を取得
     $regions = Shop::select('region')->distinct()->pluck('region')->filter();
     $genres = Shop::select('genre')->distinct()->pluck('genre')->filter();
 
@@ -43,19 +39,41 @@ public function index(Request $request)
 
 
 
+
     /**
      * 飲食店詳細画面の表示
      */
-    public function show(Shop $shop)
-    {
-        $user = auth()->user();
+public function show(Shop $shop)
+{
+    $user = auth()->user();
 
+    $pendingReview = null;
+
+    if ($user) {
+
+        // ① 最新の未評価予約を取得
         $pendingReview = Reservation::where('user_id', $user->id)
             ->where('shop_id', $shop->id)
-            ->where('status', 1) // 1: 利用済み
-            ->where('rating', 0) // review カラムが null の場合
+            ->where('status', 1) // 利用済み
+            ->where('rating', 0) // 未評価
+            ->orderBy('date', 'desc')
+            ->orderBy('time', 'desc')
             ->first();
 
-        return view('shop.show', compact('shop', 'pendingReview'));
+        // ② 最新以外の未評価予約をすべて status = -1（評価しない）
+        if ($pendingReview) {
+            Reservation::where('user_id', $user->id)
+                ->where('shop_id', $shop->id)
+                ->where('status', 1)
+                ->where('rating', 0)
+                ->where('id', '!=', $pendingReview->id)
+                ->update(['rating' => -1]);
+        }
     }
+
+    $from = request()->query('from');
+
+    return view('shop.show', compact('shop', 'pendingReview', 'from'));
+}
+
 }

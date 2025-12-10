@@ -11,9 +11,9 @@
         <div class="search-form__container">
             <!-- エリア -->
             <select class="search-form__region" name="region" onchange="document.getElementById('search-form').submit()">
-                <option value="">All area</option>
+                <option class="search-form__option" value="">All area</option>
                 @foreach ($regions as $region)
-                <option value="{{ $region }}" {{ request('region') == $region ? 'selected' : '' }}>
+                <option class="search-form__option" value="{{ $region }}" {{ request('region') == $region ? 'selected' : '' }}>
                     {{ $region }}
                 </option>
                 @endforeach
@@ -21,9 +21,9 @@
 
             <!-- ジャンル -->
             <select class="search-form__genre" name="genre" onchange="document.getElementById('search-form').submit()">
-                <option value="">All genre</option>
+                <option class="search-form__option" value="">All genre</option>
                 @foreach ($genres as $genre)
-                <option value="{{ $genre }}" {{ request('genre') == $genre ? 'selected' : '' }}>
+                <option class="search-form__option" value="{{ $genre }}" {{ request('genre') == $genre ? 'selected' : '' }}>
                     {{ $genre }}
                 </option>
                 @endforeach
@@ -42,7 +42,7 @@
     <!-- 飲食店一覧 -->
     <div class="shop-list">
         @if($shops->isEmpty())
-            <p class="no-shop">(該当する店舗はありません)</p>
+            <p class="no-shop">(店舗はありません)</p>
         @else
             @foreach($shops as $shop)
             <div class="shop-card">
@@ -50,11 +50,19 @@
                 <div class="shop-card__info">
                     <p class="shop-card__name">{{ $shop->name }}</p>
                     <div class="shop-card__tags">
-                        <span class="shop-card__region">#{{ $shop->region }}</span>
-                        <span class="shop-card__genre">#{{ $shop->genre }}</span>
+                        <span class="shop-card__region">
+                            @if($shop->region)
+                                #{{ $shop->region }}
+                            @endif
+                        </span>
+                        <span class="shop-card__genre">
+                            @if($shop->genre)
+                                #{{ $shop->genre }}
+                            @endif
+                        </span>
                     </div>
                     <div class="shop-card__link-area">
-                        <a class="shop-card__link-detail" href="{{ route('shop.show', $shop->id) }}">詳しくみる</a>
+                        <a class="shop-card__link-detail" href="{{ route('shop.show', ['shop' => $shop->id, 'from' => 'list']) }}">詳しくみる</a>
                         @auth
                         <button type="button" class="shop-card__button-favorite" data-shop-id="{{ $shop->id }}">
                             @if(auth()->check() && auth()->user()->favorites()->where('shop_id', $shop->id)->exists())

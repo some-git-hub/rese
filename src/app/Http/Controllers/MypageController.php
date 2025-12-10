@@ -13,11 +13,19 @@ class MypageController extends Controller
 
         $reservations = Reservation::where('user_id', auth()->id())
             ->where('status', 0) // 0: 予約中
+            ->whereHas('shop.user', function ($query) {
+                $query->whereNull('deleted_at');
+            })
             ->orderBy('date', 'asc')
             ->orderBy('time', 'asc')
             ->get();
 
-        $favoriteShops = $user->favorites()->get();
+        $favoriteShops = $user->favorites()
+            ->whereHas('user', function ($query) {
+                $query->whereNull('deleted_at');
+            })
+            ->get();
+
 
         return view('mypage.show', compact('user', 'reservations', 'favoriteShops'));
     }

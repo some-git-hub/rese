@@ -14,22 +14,22 @@
 
 
 .reservation-list__heading {
+    width: 96%;
     margin-bottom: 24px;
     font-size: 32px;
 }
 
 .reservation-list {
-    width: 34%;
-    min-width: 300px;
-    margin-left: 10%;
-    margin-right: 8%;
-    margin-top: 112px;
+    width: 30%;
+    min-width: 500px;
+    margin: 90px 0 40px 0;
 }
 
 .reservation-card {
-    min-width: 300px;
-    height: 300px;
-    margin-bottom: 56px;
+    width: 100%;
+    height: 280px;
+    margin: 0 auto;
+    margin-bottom: 28px;
     color: #fff;
     background-color: #06f;
     border-radius: 8px;
@@ -55,7 +55,8 @@
 }
 
 .reservation-card__label {
-    margin: 0 10%;
+    margin-left: 12%;
+    margin-right: 14%;
     font-size: 20px;
 }
 
@@ -66,4 +67,119 @@
 
 .reservation-card__item {
     font-size: 20px;
+}
+
+.reservation-card__button-area {
+    width: 88%;
+    margin: 0 auto;
+    text-align: right;
+}
+
+.reservation-card__button-complete{
+    padding: 2px 12px;
+    font-size: 20px;
+    color: #fff;
+    background-color: #06f;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.no-reservation {
+    padding-top: 24px;
+    font-size: 21px;
+}
+
+.alert__success {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.alert__inner {
+    width: 500px;
+    height: 220px;
+    padding-top: 60px;
+    color: #ff0;
+    background-color: #07f;
+    border-radius: 8px;
+    display: inline-block;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.alert__message {
+    margin: 0;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.alert__button-area {
+    width: 94%;
+    text-align: right;
+}
+
+.alert__button-close {
+    font-size: 24px;
+    color: #ff0;
+    background-color: #07f;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+
+
+
+
+/* --------------------------------------- */
+/*        レスポンシブデザイン(768px)        */
+/* --------------------------------------- */
+
+
+@media screen and (max-width: 768px) {
+
+    .reservation-list {
+        width: 70%;
+        min-width: 280px;
+        max-width: 500px;
+        margin: 90px 0 40px 0;
+    }
+
+.alert__inner {
+    width: 60%;
+    min-width: 280px;
+    height: 160px;
+    padding-top: 40px;
+    color: #ff0;
+    background-color: #07f;
+    border-radius: 8px;
+    display: inline-block;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.alert__message {
+    margin: 0;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: center;
+}
+
+.alert__button-close {
+    font-size: 16px;
+    color: #ff0;
+    background-color: #07f;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
 }

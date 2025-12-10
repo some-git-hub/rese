@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Rese</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
@@ -33,13 +34,15 @@
                 Shop-Edit
             @else
                 Shop-Create
-            @endif
+            @endisset
         </a>
-        <a href="{{ route('owner.reservation.list') }}" class="nav-button">Reservation-List</a>
         <form method="post" action="{{ route('logout') }}">
             @csrf
             <button class="nav-button" type="submit">Logout</button>
         </form>
+        @isset($shop)
+        <a href="{{ route('owner.reservation.list') }}" class="nav-button">Reservation-List</a>
+        @endisset
         @else
         <a href="{{ route('shop.list') }}" class="nav-button">Home</a>
         <a href="{{ route('register') }}" class="nav-button">Register</a>

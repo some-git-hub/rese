@@ -114,6 +114,7 @@ Route::middleware(['auth', 'owner'])->group(function () {
 
     // 予約情報の確認
     Route::get('/owner/reservation/list', [OwnerController::class, 'index'])->name('owner.reservation.list');
+    Route::post('/owner/reservation/{reservation}/complete', [OwnerController::class, 'complete'])->name('owner.reservation.complete');
 
 });
 
@@ -128,6 +129,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 
     Route::get('/admin/owner/list', [AdminController::class, 'index'])->name('admin.owner.list');
+    Route::delete('/admin/owner/{owner}', [AdminController::class, 'destroy'])->name('admin.owner.destroy');
 
 });
 

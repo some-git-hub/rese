@@ -28,12 +28,12 @@
 
     <div class="menu__wrapper hidden" id="menu-drawer">
         @auth
-        <a href="{{ route('admin.owner.list') }}" class="nav-button">Owner-List</a>
         <a href="{{ route('admin.owner.create') }}" class="nav-button">Owner-Create</a>
         <form method="post" action="{{ route('logout') }}">
             @csrf
             <button class="nav-button" type="submit">Logout</button>
         </form>
+        <a href="{{ route('admin.owner.list') }}" class="nav-button">Owner-List</a>
         @else
         <a href="{{ route('shop.list') }}" class="nav-button">Home</a>
         <a href="{{ route('register') }}" class="nav-button">Register</a>

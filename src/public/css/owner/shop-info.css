@@ -6,5 +6,219 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+}
+
+.create-form{
+    width: 50%;
+    min-width: 600px;
+    margin: 100px auto 30px auto;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px #656565;
+}
+
+.create-form__heading{
+    margin-top: 36px;
+    font-size: 28px;
+    text-align: center;
+}
+
+.create-form__container{
+    width: 66%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.create-form__label {
+    padding-left: 6px;
+    margin: 2px 0;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.create-form__input {
+    width: 100%;
+    height: 36px;
+    padding-left: 8px;
+    margin: 4px 0;
+    font-size: 16px;
+    border: 1px solid #656565;
+    border-radius: 4px;
+}
+
+.create-form__textarea{
+    width: 100%;
+    height: 120px;
+    padding: 8px;
+    margin: 5px 0;
+    font-size: 16px;
+    border: 1px solid #656565;
+    border-radius: 4px;
+}
+
+.create-form__error-message {
+    width: 100%;
+    padding-left: 6px;
+    margin: 0;
+    color: #f00;
+    font-size: 16px;
+}
+
+.create-form__error-message-image{
+    width: 100%;
+    padding-left: 6px;
+    margin: 0;
+    color: #f00;
+    font-size: 16px;
+    text-align: center;
+}
+
+.create-form__image-area {
+    margin: 16px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.create-form__image-label-area{
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.create-form__image-upload-label{
+    width: 50%;
+    padding: 6px 20px;
+    color: #06f;
+    font-weight: 500;
+    border: 3px solid #06f;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.create-form__image-input-hidden{
+    display: none;
+}
+
+.preview-img {
+    max-width: 90%;
+    aspect-ratio: 1.4;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+}
+
+.create-form__button-area{
+    width: 66%;
+    margin: 0 auto;
+}
+
+.create-form__button-submit{
+    width: 100%;
+    height: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #06f;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.alert__success {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.alert__inner {
+    width: 500px;
+    height: 220px;
+    padding-top: 60px;
+    color: #ff0;
+    background-color: #07f;
+    border-radius: 8px;
+    display: inline-block;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.alert__message {
+    margin: 0;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.alert__button-area {
+    width: 94%;
+    text-align: right;
+}
+
+.alert__button-close {
+    font-size: 24px;
+    color: #ff0;
+    background-color: #07f;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+@media screen and (max-width: 768px) {
+
+    .create-form {
+            width: 78%;
+            min-width: 280px;
+            margin: 100px auto 30px auto;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px #656565;
+        }
+
+    .create-form__container {
+            width: 76%;
+            max-width: 400px;
+            margin: 0 auto;
+            margin-bottom: 10px;
+        }
+
+.create-form__button-area {
+    width: 76%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.alert__inner {
+    width: 60%;
+    min-width: 280px;
+    height: 160px;
+    padding-top: 40px;
+    color: #ff0;
+    background-color: #07f;
+    border-radius: 8px;
+    display: inline-block;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+                .alert__message {
+                    margin: 0;
+                    margin: 20px 0;
+                    font-size: 20px;
+                    text-align: center;
+                }
+
+                .alert__button-close {
+                    font-size: 20px;
+                    color: #ff0;
+                    background-color: #07f;
+                    border: none;
+                    cursor: pointer;
+                    outline: none;
+                }
 }

@@ -21,9 +21,10 @@ class CreateReservationsTable extends Migration
             $table->time('time');
             $table->tinyInteger('people');
             $table->tinyInteger('status')->default(0); // 0:予約中, 1:利用完了, 2:予約キャンセル,
-            $table->tinyInteger('rating')->default(0); // 0:未評価, 1～5:評価
+            $table->tinyInteger('rating')->default(0); // 0:未評価, 1-5:評価, -1:評価しない,
             $table->text('comment')->nullable();
             $table->timestamps();
+            $table->timestamp('canceled_at')->nullable();
         });
     }
 

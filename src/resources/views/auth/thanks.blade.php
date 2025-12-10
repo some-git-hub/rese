@@ -8,7 +8,8 @@
 <div class="all__wrapper">
     <div class="register-thanks__wrapper">
         <p class="register-thanks__message">
-            会員登録ありがとうございます
+            <span class="register-thanks__message-1">会員登録</span>
+            <span class="register-thanks__message-2">ありがとうございます</span>
         </p>
 
         <div class="register-thanks__link-area">
