@@ -40,17 +40,13 @@ Route::get('/detail/{shop}', [ShopController::class, 'show'])->name('shop.show')
 // ゲストのみアクセス可能
 Route::middleware('guest')->group(function () {
 
-    // 会員登録（一般ユーザー）
+    // 会員登録
     Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
     Route::post('/register', [RegisterController::class, 'store']);
 
-    // ログイン（一般ユーザー）
+    // ログイン
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [LoginController::class, 'store']);
-
-    // ログイン（管理者）
-    Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
-    Route::post('/admin/login', [AdminLoginController::class, 'store']);
 
 });
 

@@ -21,7 +21,7 @@
         @if($isEdit)
             @method('PUT')
         @endif
-        <h2 class="create-form__heading">{{ $isEdit ? '店舗情報の編集' : '店舗情報の登録' }}</h2>
+        <h2 class="create-form__heading">{{ $isEdit ? '店舗情報の更新' : '店舗情報の登録' }}</h2>
 
         <div class="create-form__container">
             <p class="create-form__label">店舗画像</p>
