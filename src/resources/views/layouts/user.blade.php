@@ -13,6 +13,7 @@
 
 <body>
     <header class="header">
+
         <!-- メニューボタン -->
         <button class="header__button-open-menu" id="menu-button-open">
             <img class="header__image-menu" src="{{ asset('images/menu.png') }}" alt="メニュー">
@@ -66,21 +67,18 @@
                 body.classList.remove("menu-open");
             };
 
-            // 開閉処理
             openButton.addEventListener("click", openMenu);
             closeButton.addEventListener("click", (e) => {
                 e.stopPropagation();
                 closeMenu();
             });
 
-            // メニュー外クリック
             document.addEventListener("click", () => {
                 if (!menuDrawer.classList.contains("hidden")) {
                     closeMenu();
                 }
             });
 
-            // メニュー内クリックは閉じない
             menuDrawer.addEventListener("click", (e) => e.stopPropagation());
         });
     </script>

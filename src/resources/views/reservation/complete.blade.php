@@ -6,6 +6,8 @@
 
 @section('content')
 <div class="all__wrapper">
+
+    <!-- 予約完了ページ -->
     <div class="reservation-complete__wrapper">
         <p class="reservation-complete__message">
             <span class="reservation-complete__message-1">ご予約</span>

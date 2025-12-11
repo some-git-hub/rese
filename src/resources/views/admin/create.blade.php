@@ -19,6 +19,7 @@
     </div>
     @endif
 
+    <!-- 店舗代表者の作成フォーム -->
     <form action="{{ route('admin.owner.store') }}" method="post" class="create-form">
         @csrf
         <h2 class="create-form__heading">店舗代表者の作成</h2>
@@ -62,26 +63,26 @@
 
 @section('js')
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     const alertBox = document.querySelector('.alert__success');
     const alertInner = document.querySelector('.alert__inner');
     const okButton = document.getElementById('alertOkButton');
 
     if (!alertBox) return;
 
-    // ---- ① OKボタンで閉じる ----
+    // ---- OKボタンで閉じる ----
     okButton.addEventListener('click', function () {
         alertBox.style.display = 'none';
     });
 
-    // ---- ② Enterキーで閉じる ----
+    // ---- Enterキーで閉じる ----
     document.addEventListener('keydown', (e) => {
         if (e.key === "Enter" || e.key === "Escape" || e.key === " " || e.key === "Space") {
             alertBox.remove();
         }
     });
 
-    // ---- ③ アラート外クリックで閉じる ----
+    // ---- アラート外クリックで閉じる ----
     alertBox.addEventListener('click', function (e) {
         if (!alertInner.contains(e.target)) {
             alertBox.style.display = 'none';

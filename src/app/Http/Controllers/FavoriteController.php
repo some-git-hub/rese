@@ -7,6 +7,9 @@ use App\Models\Shop;
 
 class FavoriteController extends Controller
 {
+    /**
+     * 飲食店のお気に入り登録処理および解除処理
+     */
     public function toggle(Shop $shop)
     {
         $user = auth()->user();

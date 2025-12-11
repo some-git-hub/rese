@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             ]);
         }
 
-        // ユーザー
+        // 一般ユーザー
         User::create([
             'name' => 'TestUser',
             'email' => 'user@example.com',

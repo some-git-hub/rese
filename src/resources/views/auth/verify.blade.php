@@ -6,11 +6,10 @@
 
 @section('content')
 <div class="all__wrapper">
-    <div class="email-verification__wrapper">
-        <h1 class="email-verification__heading">
-            Email Verification
-        </h1>
 
+    <!-- メール認証誘導ページ -->
+    <div class="email-verification__wrapper">
+        <h1 class="email-verification__heading">Email Verification</h1>
         <p class="email-verification__link-area">
             <a class="email-verification__link-verify" href="http://localhost:8025/" target="_blank">メール認証はこちらから</a>
         </p>

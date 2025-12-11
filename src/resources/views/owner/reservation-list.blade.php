@@ -6,9 +6,12 @@
 
 @section('content')
 <div class="all__wrapper">
+
+    <!-- 予約情報一覧 -->
     <div class="reservation-list">
         <h1 class="reservation-list__heading">{{ $shop->name ?? '' }}の予約状況</h1>
         @forelse($reservations as $reservation)
+        <!-- 予約情報カード -->
         <div class="reservation-card">
             <div class="reservation-card__cancel-form">
                 <div class="reservation-card__heading-container">
@@ -18,18 +21,20 @@
             </div>
             <div class="reservation-card__info">
                 <div class="reservation-card__label">
+                    <p class="reservation-card__row-label">User</p>
                     <p class="reservation-card__row-label">Date</p>
                     <p class="reservation-card__row-label">Time</p>
                     <p class="reservation-card__row-label">Number</p>
                 </div>
                 <div class="reservation-card__item">
+                    <p class="reservation-card__row-item">{{ $reservation->user->name }}</p>
                     <p class="reservation-card__row-item">{{ $reservation->date }}</p>
                     <p class="reservation-card__row-item">{{ $reservation->time_formatted }}</p>
                     <p class="reservation-card__row-item">{{ $reservation->people }}人</p>
                 </div>
             </div>
             <div class="reservation-card__button-area">
-                <button type="button" class="reservation-card__button-complete" data-reservation-id="{{ $reservation->id }}" data-shop-id="{{ $reservation->shop->id }}">利用済み</button>
+                <button type="button" class="reservation-card__button-complete" data-reservation-id="{{ $reservation->id }}" data-shop-id="{{ $reservation->shop->id }}">来店済み</button>
             </div>
         </div>
         @empty
@@ -70,13 +75,10 @@ function showAlert(message) {
 document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelectorAll('.reservation-card__button-complete').forEach(button => {
-
         button.addEventListener('click', async () => {
-
-            if (!confirm('この予約の利用を確認しましたか？')) return;
+            if (!confirm('来店を確認しましたか？')) return;
 
             const reservationId = button.dataset.reservationId;
-
             const response = await fetch(
                 "{{ route('owner.reservation.complete', ':id') }}".replace(':id', reservationId),
                 {
@@ -89,13 +91,12 @@ document.addEventListener('DOMContentLoaded', function() {
             );
 
             if (response.ok) {
-
                 // カード削除
                 const card = button.closest(".reservation-card");
                 if (card) card.remove();
 
-                // 予約なしメッセージ
                 const reservationList = document.querySelector(".reservation-list");
+
                 if (!reservationList.querySelector(".reservation-card")) {
                     const p = document.createElement("p");
                     p.classList.add("no-reservation");
@@ -103,12 +104,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     reservationList.appendChild(p);
                 }
 
-                showAlert("予約状況を利用完了に更新しました");
+                showAlert("予約状況を来店済みに更新しました");
             }
         });
-
     });
-
 });
 </script>
 @endsection

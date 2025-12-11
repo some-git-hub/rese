@@ -7,10 +7,14 @@ use App\Models\Reservation;
 
 class MypageController extends Controller
 {
+    /**
+     * マイページの表示
+     */
     public function show()
     {
         $user = auth()->user();
 
+        // 予約情報一覧
         $reservations = Reservation::where('user_id', auth()->id())
             ->where('status', 0) // 0: 予約中
             ->whereHas('shop.user', function ($query) {
@@ -20,6 +24,7 @@ class MypageController extends Controller
             ->orderBy('time', 'asc')
             ->get();
 
+        // お気に入り店舗一覧
         $favoriteShops = $user->favorites()
             ->whereHas('user', function ($query) {
                 $query->whereNull('deleted_at');

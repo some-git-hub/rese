@@ -9,11 +9,18 @@ use App\Http\Requests\Auth\RegisterRequest;
 
 class AdminController extends Controller
 {
+    /**
+     * 店舗代表者の作成画面の表示
+     */
     public function create()
     {
         return view('admin.create');
     }
 
+
+    /**
+     * 店舗代表者の作成処理
+     */
     public function store(RegisterRequest $request)
     {
         $data = $request->validated();
@@ -28,6 +35,10 @@ class AdminController extends Controller
         return redirect()->route('admin.owner.create')->with('success', '店舗代表者を作成しました');
     }
 
+
+    /**
+     * 店舗代表者一覧の表示
+     */
     public function index()
     {
         $owners = User::where('role', 1)->get();
@@ -35,6 +46,10 @@ class AdminController extends Controller
         return view('admin.owner-list', compact('owners'));
     }
 
+
+    /**
+     * 店舗代表者の削除処理
+     */
     public function destroy(User $owner)
     {
         $owner->delete();

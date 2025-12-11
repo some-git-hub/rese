@@ -6,6 +6,8 @@
 
 @section('content')
 <div class="all__wrapper">
+
+    <!-- 送信成功メッセージ -->
     @if(session('success'))
     <div class="alert__success">
         <div class="alert__inner">
@@ -16,6 +18,8 @@
         </div>
     </div>
     @endif
+
+    <!-- 飲食店詳細 -->
     <div class="shop-info">
         <div class="shop-info__name-area">
             @if ($from === 'mypage')
@@ -103,10 +107,13 @@
         </div>
         @endif
     </div>
+
+    <!-- 予約フォーム -->
     <div class="shop-reservation">
         <form action="{{ route('reservation.store') }}" class="reservation-form" method="post">
             @csrf
             <h1 class="reservation-form__heading">予約</h1>
+
             <div class="reservation-form__input-area">
                 <input type="date" name="date" value="{{ old('date', now()->format('Y-m-d')) }}" class="reservation-form__input-date">
                 @error('date')
@@ -115,6 +122,7 @@
                 </p>
                 @enderror
             </div>
+
             <div class="reservation-form__input-area">
                 <input type="time" name="time" value="{{ old('time', '17:00') }}" class="reservation-form__input-time">
                 @error('time')
@@ -123,6 +131,7 @@
                 </p>
                 @enderror
             </div>
+
             <div class="reservation-form__select-area">
                 <select class="reservation-form__select-people" name="people">
                     @for ($i = 1; $i <= 10; $i++)
@@ -137,6 +146,7 @@
                 </p>
                 @enderror
             </div>
+
             <table class="reservation-confirm-table">
                 <tr class="reservation-confirm-table__row-shop">
                     <th class="reservation-confirm-table__label reservation-confirm-table__label-first">Shop</th>
@@ -155,6 +165,7 @@
                     <td class="reservation-confirm-table__item reservation-confirm-table__item-last" id="confirm-people">未選択</td>
                 </tr>
             </table>
+
             <div class="reservation-form__button-area">
                 <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                 <button type="submit" class="reservation-form__button-submit">予約する</button>
@@ -168,7 +179,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- 入力欄（input / select） ---
+    // --- 入力欄 ---
     const dateInput = document.querySelector('.reservation-form__input-date');
     const timeInput = document.querySelector('.reservation-form__input-time');
     const peopleSelect = document.querySelector('.reservation-form__select-people');
@@ -178,27 +189,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const timeCell = document.getElementById('confirm-time');
     const peopleCell = document.getElementById('confirm-people');
 
-    // 日付
     dateInput.addEventListener('input', function () {
         dateCell.textContent = this.value;
     });
 
-    // 時刻
     timeInput.addEventListener('input', function () {
         timeCell.textContent = this.value;
     });
 
-    // 人数
     peopleSelect.addEventListener('change', function () {
         peopleCell.textContent = this.value ? this.value + '人' : '';
     });
 
-    // --- ページ読み込み時（old() の値がある場合）は即反映 ---
     if (dateInput.value) dateCell.textContent = dateInput.value;
     if (timeInput.value) timeCell.textContent = timeInput.value;
     if (peopleSelect.value) peopleCell.textContent = peopleSelect.value + '人';
 
-    // --- モーダル ---
     const reviewModal = document.getElementById('reviewModal');
 
     if (reviewModal) {
@@ -218,12 +224,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const rating = this.dataset.value;
             ratingInput.value = rating;
 
-            // 点灯更新
             stars.forEach(s => {
                 if (s.dataset.value <= rating) {
-                    s.src = onImg; // 点灯画像
+                    s.src = onImg;
                 } else {
-                    s.src = offImg; // 消灯画像
+                    s.src = offImg;
                 }
             });
         });

@@ -6,6 +6,8 @@
 
 @section('content')
 <div class="all__wrapper">
+
+    <!-- 会員登録完了ページ -->
     <div class="register-thanks__wrapper">
         <p class="register-thanks__message">
             <span class="register-thanks__message-1">会員登録</span>

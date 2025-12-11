@@ -103,7 +103,7 @@ Password: adminpass
 
 ## テーブル設計
 
-**usersテーブル**
+### usersテーブル
 
 | カラム名           | 型              | PRIMARY KEY | UNIQUE KEY | NOT NULL | FOREIGN KEY |
 | ----------------- | --------------- | ----------- | ---------- | -------- | ----------- |
@@ -111,14 +111,14 @@ Password: adminpass
 | name              | varchar(20)     |             |            |    〇    |             |
 | email             | varchar(255)    |             |     〇     |    〇    |             |
 | email_verified_at | timestamp       |             |            |          |             |
-| password         | varchar(255)    |             |            |    〇    |             |
+| password          | varchar(255)    |             |            |    〇    |             |
 | role              | tinyint         |             |            |    〇    |             |
 | remember_token    | varchar(100)    |             |            |          |             |
 | created_at        | timestamp       |             |            |    〇    |             |
 | updated_at        | timestamp       |             |            |    〇    |             |
 | deleted_at        | timestamp       |             |            |          |             |
 
-**shopsテーブル**
+### shopsテーブル
 
 | カラム名     | 型              | PRIMARY KEY | UNIQUE KEY | NOT NULL | FOREIGN KEY |
 | ----------- | --------------- | ----------- | ---------- | -------- | ----------- |
@@ -132,7 +132,7 @@ Password: adminpass
 | created_at  | timestamp       |             |            |    〇    |             |
 | updated_at  | timestamp       |             |            |    〇    |             |
 
-**favoritesテーブル**
+### favoritesテーブル
 
 | カラム名    | 型              | PRIMARY KEY       | UNIQUE KEY | NOT NULL | FOREIGN KEY |
 | ---------- | --------------- | ----------------- | ---------- | -------- | ----------- |
@@ -141,7 +141,7 @@ Password: adminpass
 | created_at | timestamp       |                   |            |    〇    |             |
 | updated_at | timestamp       |                   |            |    〇    |             |
 
-**reservationsテーブル**
+### reservationsテーブル
 
 | カラム名     | 型              | PRIMARY KEY | UNIQUE KEY | NOT NULL | FOREIGN KEY |
 | ----------- | --------------- | ----------- | ---------- | -------- | ----------- |
@@ -168,7 +168,7 @@ Password: adminpass
 
 ### Docker ビルド
 
-- 以下のコマンドでリポジトリをクローンし、Docker コンテナをビルドして起動する。
+1. 以下のコマンドでリポジトリをクローンし、Docker コンテナをビルドして起動する。
 
 ```bash
 git clone git@github.com:some-git-hub/rese.git

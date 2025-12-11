@@ -170,55 +170,62 @@
     outline: none;
 }
 
+
+/* --------------------------------------- */
+/*        レスポンシブデザイン(768px)        */
+/* --------------------------------------- */
+
+
 @media screen and (max-width: 768px) {
 
     .create-form {
-            width: 78%;
-            min-width: 280px;
-            margin: 100px auto 30px auto;
-            background-color: #fff;
-            border-radius: 20px;
-            box-shadow: 0 4px 8px #656565;
-        }
+        width: 78%;
+        min-width: 280px;
+        margin: 100px auto 30px auto;
+        background-color: #fff;
+        border-radius: 20px;
+        box-shadow: 0 4px 8px #656565;
+    }
 
     .create-form__container {
-            width: 76%;
-            max-width: 400px;
-            margin: 0 auto;
-            margin-bottom: 10px;
-        }
+        width: 76%;
+        max-width: 400px;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
 
-.create-form__button-area {
-    width: 76%;
-    max-width: 400px;
-    margin: 0 auto;
-}
+    .create-form__button-area {
+        width: 76%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
 
-.alert__inner {
-    width: 60%;
-    min-width: 280px;
-    height: 160px;
-    padding-top: 40px;
-    color: #ff0;
-    background-color: #07f;
-    border-radius: 8px;
-    display: inline-block;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
+    .alert__inner {
+        width: 60%;
+        min-width: 280px;
+        height: 160px;
+        padding-top: 40px;
+        color: #ff0;
+        background-color: #07f;
+        border-radius: 8px;
+        display: inline-block;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
 
-                .alert__message {
-                    margin: 0;
-                    margin: 20px 0;
-                    font-size: 20px;
-                    text-align: center;
-                }
+    .alert__message {
+        margin: 0;
+        margin: 20px 0;
+        font-size: 20px;
+        text-align: center;
+    }
 
-                .alert__button-close {
-                    font-size: 20px;
-                    color: #ff0;
-                    background-color: #07f;
-                    border: none;
-                    cursor: pointer;
-                    outline: none;
-                }
+    .alert__button-close {
+        font-size: 20px;
+        color: #ff0;
+        background-color: #07f;
+        border: none;
+        cursor: pointer;
+        outline: none;
+    }
+
 }

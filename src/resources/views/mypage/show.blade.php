@@ -8,9 +8,12 @@
 <div class="all__wrapper">
     <p class="user-name">{{ $user->name }}さん</p>
     <div class="mypage__wrapper">
+
+        <!-- 予約情報一覧 -->
         <div class="reservation-list">
             <h1 class="reservation-list__heading">予約状況</h1>
             @forelse($reservations as $reservation)
+            <!-- 予約情報カード -->
             <div class="reservation-card">
                 <div class="reservation-card__cancel-form">
                     <div class="reservation-card__heading-container">
@@ -43,6 +46,7 @@
             <p class="no-reservation">(予約はありません)</p>
             @endforelse
 
+            <!-- 予約内容の変更フォーム（モーダル） -->
             <div id="editModal" class="modal hidden">
                 <form class="edit-form" id="editForm">
                     @csrf
@@ -90,12 +94,14 @@
                     </div>
                 </form>
             </div>
-
         </div>
+
+        <!-- お気に入り店舗一覧 -->
         <div class="favorite-shop-list__wrapper">
             <h1 class="favorite-shop-list__heading">お気に入り店舗</h1>
             <div class="favorite-shop-list__container">
                 @forelse($favoriteShops as $favoriteShop)
+                <!-- お気に入り店舗カード -->
                 <div class="favorite-shop-card">
                     <img src="{{ asset('storage/shops/' . $favoriteShop->image) }}" alt="{{ $favoriteShop->name }}" class="favorite-shop-card__image">
                     <div class="favorite-shop-card__info">
@@ -137,78 +143,73 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-function showAlert(message) {
-    const alertBox = document.createElement("div");
-    alertBox.classList.add("alert__success");
-    alertBox.innerHTML = `
-        <div class="alert__inner">
-            <p class="alert__message">${message}</p>
-            <div class="alert__button-area">
-                <button class="alert__button-close">OK</button>
+    function showAlert(message) {
+        const alertBox = document.createElement("div");
+        alertBox.classList.add("alert__success");
+        alertBox.innerHTML = `
+            <div class="alert__inner">
+                <p class="alert__message">${message}</p>
+                <div class="alert__button-area">
+                    <button class="alert__button-close">OK</button>
+                </div>
             </div>
-        </div>
-    `;
-    document.body.appendChild(alertBox);
+        `;
+        document.body.appendChild(alertBox);
 
-    const closeAlert = () => {
-        alertBox.remove();
-        location.reload();
-    };
+        const closeAlert = () => {
+            alertBox.remove();
+            location.reload();
+        };
 
-    // OKボタン
-    alertBox.querySelector(".alert__button-close").addEventListener("click", closeAlert);
+        // OKボタン
+        alertBox.querySelector(".alert__button-close").addEventListener("click", closeAlert);
 
-    // 背景クリック
-    alertBox.addEventListener("click", (e) => {
-        if (e.target === alertBox) closeAlert();
-    });
-
-    // Enter / Esc / Space キー
-    const keyHandler = (e) => {
-        if (["Enter", "Escape", " ", "Space"].includes(e.key)) {
-            closeAlert();
-            document.removeEventListener("keydown", keyHandler);
-        }
-    };
-    document.addEventListener("keydown", keyHandler);
-}
-
-
-
-// 予約キャンセル
-document.querySelectorAll(".reservation-card__button-cancel").forEach(button => {
-    button.addEventListener("click", async () => {
-        if(!confirm("本当にキャンセルしますか？")) return; // 確認ダイアログ
-
-        const id = button.dataset.reservationId;
-
-        const response = await fetch("{{ route('reservation.cancel', ':id') }}".replace(':id', id), {
-            method: "POST",
-            headers: {
-                "X-CSRF-TOKEN": "{{ csrf_token() }}",
-                "Accept": "application/json"
-            }
+        // 背景クリック
+        alertBox.addEventListener("click", (e) => {
+            if (e.target === alertBox) closeAlert();
         });
 
-        if (response.ok) {
-            const card = button.closest(".reservation-card");
-            if (card) card.remove();
-
-            // すべての予約が削除された場合にメッセージ表示
-            const reservationList = document.querySelector(".reservation-list");
-            if (!reservationList.querySelector(".reservation-card")) {
-                const p = document.createElement("p");
-                p.classList.add("no-reservation");
-                p.textContent = "(予約はありません)";
-                reservationList.appendChild(p);
+        // Enter / Esc / Space キー
+        const keyHandler = (e) => {
+            if (["Enter", "Escape", " ", "Space"].includes(e.key)) {
+                closeAlert();
+                document.removeEventListener("keydown", keyHandler);
             }
+        };
+        document.addEventListener("keydown", keyHandler);
+    }
 
-            // --- キャンセル成功アラート ---
-            showAlert("予約をキャンセルしました");
-        }
+    // 予約キャンセル
+    document.querySelectorAll(".reservation-card__button-cancel").forEach(button => {
+        button.addEventListener("click", async () => {
+            if(!confirm("本当にキャンセルしますか？")) return;
+
+            const id = button.dataset.reservationId;
+
+            const response = await fetch("{{ route('reservation.cancel', ':id') }}".replace(':id', id), {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                    "Accept": "application/json"
+                }
+            });
+
+            if (response.ok) {
+                const card = button.closest(".reservation-card");
+                if (card) card.remove();
+
+                const reservationList = document.querySelector(".reservation-list");
+                if (!reservationList.querySelector(".reservation-card")) {
+                    const p = document.createElement("p");
+                    p.classList.add("no-reservation");
+                    p.textContent = "(予約はありません)";
+                    reservationList.appendChild(p);
+                }
+
+                showAlert("予約をキャンセルしました");
+            }
+        });
     });
-});
-
 
     // お気に入り切り替え
     document.querySelectorAll(".favorite-shop-card__button-favorite").forEach(button => {
@@ -233,7 +234,6 @@ document.querySelectorAll(".reservation-card__button-cancel").forEach(button => 
 
                     if (card) card.remove();
 
-                    // --- ここで空になったらメッセージを追加 ---
                     const container = document.querySelector(".favorite-shop-list__container");
                     if (!container.querySelector(".favorite-shop-card")) {
                         const p = document.createElement("p");
@@ -245,7 +245,6 @@ document.querySelectorAll(".reservation-card__button-cancel").forEach(button => 
                 } else {
                     img.src = "{{ asset('images/favorite_active.png') }}";
 
-                    // 空メッセージが残っていたら削除
                     const noFavorite = document.querySelector(".no-favorite");
                     if (noFavorite) noFavorite.remove();
                 }
@@ -253,7 +252,7 @@ document.querySelectorAll(".reservation-card__button-cancel").forEach(button => 
         });
     });
 
-    // --- 編集モーダルを開く ---
+    // --- モーダルを開く ---
     document.querySelectorAll(".reservation-card__button-edit").forEach(button => {
         button.addEventListener("click", () => {
             const card = button.closest(".reservation-card");
@@ -290,35 +289,29 @@ document.querySelectorAll(".reservation-card__button-cancel").forEach(button => 
 
         const data = await response.json();
 
-if (response.ok) {
-    const modal = document.getElementById("editModal");
-    modal.classList.add("hidden");
+        if (response.ok) {
+            const modal = document.getElementById("editModal");
+            modal.classList.add("hidden");
 
-    // DOM 更新
-    const id = document.getElementById("modal_reservation_id").value;
-    const card = document.querySelector(`.reservation-card__button-edit[data-reservation-id="${id}"]`).closest(".reservation-card");
-    const items = card.querySelectorAll(".reservation-card__row-item");
+            // DOM 更新
+            const id = document.getElementById("modal_reservation_id").value;
+            const card = document.querySelector(`.reservation-card__button-edit[data-reservation-id="${id}"]`).closest(".reservation-card");
+            const items = card.querySelectorAll(".reservation-card__row-item");
 
-    items[1].textContent = document.getElementById("modal_date").value; // Date
-    items[2].textContent = document.getElementById("modal_time").value; // Time
-    items[3].textContent = document.getElementById("modal_people").value + "人"; // People
+            items[1].textContent = document.getElementById("modal_date").value;
+            items[2].textContent = document.getElementById("modal_time").value;
+            items[3].textContent = document.getElementById("modal_people").value + "人";
 
-    // フォームリセット
-    document.getElementById("modal_date").value = "";
-    document.getElementById("modal_time").value = "";
-    document.getElementById("modal_people").value = "1";
-    document.getElementById("error_date").textContent = "";
-    document.getElementById("error_time").textContent = "";
-    document.getElementById("error_people").textContent = "";
+            document.getElementById("modal_date").value = "";
+            document.getElementById("modal_time").value = "";
+            document.getElementById("modal_people").value = "1";
+            document.getElementById("error_date").textContent = "";
+            document.getElementById("error_time").textContent = "";
+            document.getElementById("error_people").textContent = "";
 
-// 成功アラート表示
-showAlert("予約内容を変更しました");
+            showAlert("予約内容を変更しました");
+        }
 
-}
-
-
-
-        // エラー表示
         document.getElementById("error_date").textContent = data.errors?.date?.join(" / ") || "";
         document.getElementById("error_time").textContent = data.errors?.time?.join(" / ") || "";
         document.getElementById("error_people").textContent = data.errors?.people?.join(" / ") || "";

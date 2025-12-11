@@ -10,7 +10,7 @@ use App\Http\Requests\ReservationRequest;
 class ReservationController extends Controller
 {
     /**
-     * 予約完了画面の表示
+     * 予約処理
      */
     public function store(ReservationRequest $request)
     {
@@ -27,11 +27,19 @@ class ReservationController extends Controller
         return redirect()->route('reservation.complete');
     }
 
+
+    /**
+     * 予約完了画面の表示
+     */
     public function complete()
     {
         return view('reservation.complete');
     }
 
+
+    /**
+     * 予約キャンセル処理
+     */
     public function cancel($reservation)
     {
         $reservation = Reservation::findOrFail($reservation);
@@ -47,26 +55,33 @@ class ReservationController extends Controller
         return response()->json(['success' => true]);
     }
 
-public function update(ReservationRequest $request, $id)
-{
-    $reservation = Reservation::findOrFail($id);
 
-    if ($reservation->user_id !== auth()->id()) {
-        abort(403, '権限がありません。');
+    /**
+     * 予約内容の更新処理
+     */
+    public function update(ReservationRequest $request, $id)
+    {
+        $reservation = Reservation::findOrFail($id);
+
+        if ($reservation->user_id !== auth()->id()) {
+            abort(403, '権限がありません。');
+        }
+
+        $data = $request->validated();
+
+        $reservation->update([
+            'date' => $data['date'],
+            'time' => $data['time'],
+            'people' => $data['people'],
+        ]);
+
+        return response()->json(['success' => true]);
     }
 
-    $data = $request->validated();
 
-    $reservation->update([
-        'date' => $data['date'],
-        'time' => $data['time'],
-        'people' => $data['people'],
-    ]);
-
-    return response()->json(['success' => true]);
-}
-
-
+    /**
+     * レビュー保存処理
+     */
     public function storeReview(ReviewRequest $request, Reservation $reservation)
     {
         $data = $request->validated();
@@ -78,19 +93,22 @@ public function update(ReservationRequest $request, $id)
         return redirect()->back()->with('success', 'レビューありがとうございました！');
     }
 
+
+    /**
+     * レビュースキップ処理
+     */
     public function skip($reservationId)
-{
-    $reservation = Reservation::findOrFail($reservationId);
+    {
+        $reservation = Reservation::findOrFail($reservationId);
 
-    if ($reservation->user_id !== auth()->id()) {
-        abort(403);
+        if ($reservation->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $reservation->rating = -1;
+        $reservation->comment = null;
+        $reservation->save();
+
+        return redirect()->back();
     }
-
-    $reservation->rating = -1;
-    $reservation->comment = null;
-    $reservation->save();
-
-    return redirect()->back();
-}
-
 }

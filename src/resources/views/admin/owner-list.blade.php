@@ -19,8 +19,8 @@
     </div>
     @endif
 
+    <!-- 店舗代表者の一覧表 -->
     <h1 class="owner-list__heading">店舗代表者一覧</h1>
-
     <table class="owner-list__container">
         <tr class="owner-list__row-label">
             <th class="owner-list__label owner-list__label-owner">店舗代表者</th>
@@ -53,26 +53,26 @@
 
 @section('js')
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     const alertBox = document.querySelector('.alert__success');
     const alertInner = document.querySelector('.alert__inner');
     const okButton = document.getElementById('alertOkButton');
 
     if (!alertBox) return;
 
-    // ---- ① OKボタンで閉じる ----
+    // ---- OKボタンで閉じる ----
     okButton.addEventListener('click', function () {
         alertBox.style.display = 'none';
     });
 
-    // ---- ② Enterキーで閉じる ----
+    // ---- Enterキーで閉じる ----
     document.addEventListener('keydown', (e) => {
         if (e.key === "Enter" || e.key === "Escape" || e.key === " " || e.key === "Space") {
             alertBox.remove();
         }
     });
 
-    // ---- ③ アラート外クリックで閉じる ----
+    // ---- アラート外クリックで閉じる ----
     alertBox.addEventListener('click', function (e) {
         if (!alertInner.contains(e.target)) {
             alertBox.style.display = 'none';

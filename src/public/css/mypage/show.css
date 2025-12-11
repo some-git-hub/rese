@@ -98,16 +98,16 @@
 
 .reservation-card__row-label{
     margin: 16px 0;
-        white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .reservation-card__row-item {
     margin: 16px 0;
-        white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .reservation-card__button-area{
@@ -427,6 +427,9 @@
 }
 
 
+/* --------------------------------------- */
+/*        レスポンシブデザイン(768px)        */
+/* --------------------------------------- */
 
 
 @media screen and (max-width: 768px) {
@@ -471,7 +474,7 @@
     .favorite-shop-list__container {
         display: flex;
         flex-wrap: wrap;
-        gap: 7%;
+        gap: 6%;
     }
 
     .favorite-shop-card {
@@ -490,127 +493,130 @@
         border-radius: 8px 8px 0 0;
     }
 
-.edit-form {
-    width: 500px;
-    font-size: 26px;
-    color: #fff;
-    background-color: #06f;
-    border-radius: 12px;
-    box-shadow: 0 4px 4px #656565;
+    .edit-form {
+        width: 500px;
+        font-size: 26px;
+        color: #fff;
+        background-color: #06f;
+        border-radius: 12px;
+        box-shadow: 0 4px 4px #656565;
+    }
+
+    .edit-form__heading-container {
+        width: 94%;
+        margin-top: 12px;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .edit-form__button-close {
+        font-size: 22px;
+        font-weight: 500;
+        width: 16%;
+        margin-left: auto;
+        color: #fff;
+        background-color: #06f;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .edit-form__shop-name {
+        margin-left: 94px;
+    }
+
+    .edit-form__input-date {
+        width: 50%;
+        height: 40px;
+        padding: 0 18px;
+        margin-left: 91.4px;
+        font-size: 18px;
+        font-weight: 500;
+        border: none;
+        border-radius: 4px;
+        letter-spacing: 2px;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .edit-form__input-time {
+        width: 50%;
+        height: 40px;
+        padding: 0 18px;
+        margin-left: 86px;
+        font-size: 18px;
+        font-weight: 500;
+        border: none;
+        border-radius: 4px;
+        letter-spacing: 2px;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .edit-form__select-people {
+        width: 50%;
+        height: 40px;
+        padding: 0 18px;
+        margin-left: 47.7px;
+        font-size: 18px;
+        font-weight: 500;
+        border: none;
+        border-radius: 4px;
+        letter-spacing: 2px;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .alert__inner {
+        width: 60%;
+        min-width: 280px;
+        height: 160px;
+        padding-top: 40px;
+        color: #ff0;
+        background-color: #07f;
+        border-radius: 8px;
+        display: inline-block;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .error-text {
+        width: 50%;
+        color: #ffff00;
+        font-size: 16px;
+        font-weight: 500;
+        margin-left: 41%;
+    }
+
+    .alert__message {
+        margin: 0;
+        margin: 20px 0;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .alert__button-close {
+        font-size: 20px;
+        color: #ff0;
+        background-color: #07f;
+        border: none;
+        cursor: pointer;
+        outline: none;
+    }
+
+    .no-reservation {
+        padding-top: 24px;
+        font-size: 19px;
+    }
+
+    .no-favorite {
+        font-size: 19px;
+    }
+
 }
 
-        .edit-form__heading-container {
-            width: 94%;
-            margin-top: 12px;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-        }
 
-.edit-form__button-close {
-    font-size: 22px;
-    font-weight: 500;
-    width: 16%;
-    margin-left: auto;
-    color: #fff;
-    background-color: #06f;
-    border: none;
-    outline: none;
-    cursor: pointer;
-}
 
-.edit-form__shop-name {
-    margin-left: 94px;
-}
-
-.edit-form__input-date {
-    width: 50%;
-    height: 40px;
-    padding: 0 18px;
-    margin-left: 91.4px;
-    font-size: 18px;
-    font-weight: 500;
-    border: none;
-    border-radius: 4px;
-    letter-spacing: 2px;
-    outline: none;
-    cursor: pointer;
-}
-
-.edit-form__input-time {
-    width: 50%;
-    height: 40px;
-    padding: 0 18px;
-    margin-left: 86px;
-    font-size: 18px;
-    font-weight: 500;
-    border: none;
-    border-radius: 4px;
-    letter-spacing: 2px;
-    outline: none;
-    cursor: pointer;
-}
-
-.edit-form__select-people {
-    width: 50%;
-    height: 40px;
-    padding: 0 18px;
-    margin-left: 47.7px;
-    font-size: 18px;
-    font-weight: 500;
-    border: none;
-    border-radius: 4px;
-    letter-spacing: 2px;
-    outline: none;
-    cursor: pointer;
-}
-
-.alert__inner {
-    width: 60%;
-    min-width: 280px;
-    height: 160px;
-    padding-top: 40px;
-    color: #ff0;
-    background-color: #07f;
-    border-radius: 8px;
-    display: inline-block;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-.error-text {
-    width: 50%;
-    color: #ffff00;
-    font-size: 16px;
-    font-weight: 500;
-    margin-left: 41%;
-}
-
-.alert__message {
-    margin: 0;
-    margin: 20px 0;
-    font-size: 20px;
-    text-align: center;
-}
-
-.alert__button-close {
-    font-size: 20px;
-    color: #ff0;
-    background-color: #07f;
-    border: none;
-    cursor: pointer;
-    outline: none;
-}
-
-.no-reservation {
-    padding-top: 24px;
-    font-size: 19px;
-}
-
-.no-favorite {
-    font-size: 19px;
-}
-
-}
 
 
 @media screen and (max-width: 580px) {
@@ -631,10 +637,15 @@
     }
 
     .favorite-shop-list__wrapper {
-        width: 60%;
-        min-width: 260px;
+        width: 80%;
         margin: 0 auto;
     }
+
+                .favorite-shop-list__container {
+                    width: 80%;
+                    margin: 0 auto;
+                    min-width: 260px;
+                }
 
     .favorite-shop-card {
         background-color: #fff;
@@ -738,6 +749,18 @@
                     outline: none;
                     cursor: pointer;
                 }
+
+.no-reservation {
+    padding-top: 24px;
+    font-size: 19px;
+    text-align: center;
+}
+
+.no-favorite {
+    width: 100%;
+    font-size: 19px;
+    text-align: center;
+}
 
 .error-text {
     width: 50%;

@@ -6,10 +6,11 @@
 
 @section('content')
 <div class="all__wrapper">
+
     <!-- 検索フォーム -->
     <form class="search-form__wrapper" id="search-form" action="{{ route('shop.list') }}" method="get">
         <div class="search-form__container">
-            <!-- エリア -->
+
             <select class="search-form__region" name="region" onchange="document.getElementById('search-form').submit()">
                 <option class="search-form__option" value="">All area</option>
                 @foreach ($regions as $region)
@@ -19,7 +20,6 @@
                 @endforeach
             </select>
 
-            <!-- ジャンル -->
             <select class="search-form__genre" name="genre" onchange="document.getElementById('search-form').submit()">
                 <option class="search-form__option" value="">All genre</option>
                 @foreach ($genres as $genre)
@@ -29,7 +29,6 @@
                 @endforeach
             </select>
 
-            <!-- 店名 -->
             <span class="search-form__image-area">
                 <img src="{{ asset('images/search.png') }}" alt="search" class="search-form__image-search">
             </span>
@@ -45,6 +44,7 @@
             <p class="no-shop">(店舗はありません)</p>
         @else
             @foreach($shops as $shop)
+            <!-- 飲食店カード -->
             <div class="shop-card">
                 <img src="{{ asset('storage/shops/' . $shop->image) }}" alt="{{ $shop->name }}" class="shop-card__image">
                 <div class="shop-card__info">

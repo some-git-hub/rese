@@ -6,6 +6,8 @@
 
 @section('content')
 <div class="all__wrapper">
+
+    <!-- 送信成功メッセージ -->
     @if(session('success'))
     <div class="alert__success">
         <div class="alert__inner">
@@ -16,6 +18,8 @@
         </div>
     </div>
     @endif
+
+    <!-- 店舗情報の作成および変更フォーム -->
     <form class="create-form" action="{{ $isEdit ? route('owner.shop.update', $shop->id) : route('owner.shop.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @if($isEdit)
@@ -112,19 +116,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!alertBox) return;
 
-    // ---- ① OKボタンで閉じる ----
+    // ---- OKボタンで閉じる ----
     okButton.addEventListener('click', function () {
         alertBox.style.display = 'none';
     });
 
-    // ---- ② Enterキーで閉じる ----
+    // ---- Enterキーで閉じる ----
     document.addEventListener('keydown', (e) => {
         if (e.key === "Enter" || e.key === "Escape" || e.key === " " || e.key === "Space") {
             alertBox.remove();
         }
     });
 
-    // ---- ③ アラート外クリックで閉じる ----
+    // ---- アラート外クリックで閉じる ----
     alertBox.addEventListener('click', function (e) {
         if (!alertInner.contains(e.target)) {
             alertBox.style.display = 'none';
