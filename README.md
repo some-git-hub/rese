@@ -2,7 +2,7 @@
 
 飲食店予約サービス
 
-![トップ画面](./src/public/images/main-page.png)
+![トップ画面](./main-page.png)
 
 
 ## 作成した目的
