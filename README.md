@@ -37,7 +37,7 @@ Email: owner3@example.com
 …  
 Email: owner20@example.com  
 
-Password（共通）: ownerpass  
+Password: ownerpass  
 
 * 20名存在します
 * いずれも共通パスワードです
