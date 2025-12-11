@@ -39,8 +39,8 @@ Email: owner20@example.com
 
 Password: ownerpass  
 
-* 20名存在します
-* いずれも共通パスワードです
+> 20名存在します。  
+> いずれも共通パスワードです。  
 
 ### 管理者アカウント
 
