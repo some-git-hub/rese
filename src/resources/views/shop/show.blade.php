@@ -52,10 +52,10 @@
         @if($pendingReview)
         <div id="reviewModal" class="modal">
             <div class="review-form">
-                <h2 class="review-form__heading">
+                <h1 class="review-form__heading">
                     <span class="review-form__heading-1">{{ $shop->name }}のレビューを</span>
                     <span class="review-form__heading-2">お願いします</span>
-                </h2>
+                </h1>
                 <form class="review-form__inner" id="reviewForm" method="POST" action="{{ route('review.store', $pendingReview->id) }}">
                     @csrf
                     <!-- 評価 -->

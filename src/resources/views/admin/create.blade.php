@@ -22,7 +22,7 @@
     <!-- 店舗代表者の作成フォーム -->
     <form action="{{ route('admin.owner.store') }}" method="post" class="create-form">
         @csrf
-        <h2 class="create-form__heading">店舗代表者の作成</h2>
+        <h1 class="create-form__heading">店舗代表者の作成</h1>
 
         <div class="create-form__container">
             <p class="create-form__label">名前</p>
