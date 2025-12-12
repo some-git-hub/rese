@@ -72,7 +72,7 @@
         </div>
 
         <div class="create-form__container">
-            <p class="create-form__label">説明</p>
+            <p class="create-form__label">店舗概要</p>
             <div class="create-form__textarea-area">
                 <textarea class="create-form__textarea" name="description">{{ old('description', $shop->description ?? '') }}</textarea>
             </div>

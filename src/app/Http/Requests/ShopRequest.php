@@ -45,7 +45,7 @@ class ShopRequest extends FormRequest
             'name' => '店舗名',
             'region' => '地域',
             'genre' => 'ジャンル',
-            'description' => '店舗説明',
+            'description' => '店舗概要',
             'image' => '店舗画像',
         ];
     }
