@@ -4,6 +4,7 @@
 /storage/*.key
 !/storage/app/
 !/storage/app/public/
+!/storage/app/public/shops/
 /vendor
 .env
 .env.backup
